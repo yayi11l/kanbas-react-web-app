@@ -1,0 +1,85 @@
+export default function TableExercise() {
+  return (
+    <div id="wd-tables">
+        <h4>Table Tag</h4>
+        <table border={1} width="100%">
+          <thead>
+            <tr>
+              <th>Quiz</th>
+              <th>Topic</th>
+              <th>Date</th>
+              <th>Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Q1</td>
+              <td>HTML</td>
+              <td>5/22/24</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Q2</td>
+              <td>CSS</td>
+              <td>5/29/24</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Q3</td>
+              <td>JavaScript</td>
+              <td>6/5/24</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Q4</td>
+              <td>Routing</td>
+              <td>6/12/24</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Q5</td>
+              <td>State</td>
+              <td>6/19/24</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Q6</td>
+              <td>Node</td>
+              <td>7/10/24</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Q7</td>
+              <td>Session</td>
+              <td>7/17/24</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Q8</td>
+              <td>Redux</td>
+              <td>7/24/24</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Q9</td>
+              <td>MongoDB</td>
+              <td>7/31/24</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Q10</td>
+              <td>Mongoose</td>
+              <td>8/7/24</td>
+              <td></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={3}>Average</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+  )
+}
