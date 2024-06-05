@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+#root {
+  height: 100%; }
+
+.wd-dashboard-course .card {
+    height: 100%;
+  }
+  
+.wd-dashboard-course .card-body {
+    height: 100%;
+  }
+  
+.wd-dashboard-course .card-img-top {
+    height: 200px; /* Set desired height */
+    object-fit: cover; /* Ensure images cover the entire area */
+  }

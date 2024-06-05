@@ -1,0 +1,5 @@
+/* Add custom styles for the green border */
+.wd-lessons .wd-lesson {
+  border-left: 2px solid green; /* Add a green border to the left */
+  border-left-width: 2px; /* Change the width of the left border */
+}
