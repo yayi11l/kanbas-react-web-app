@@ -1,7 +1,20 @@
 import { LiaFileImportSolid, LiaCogSolid, LiaFileExportSolid } from "react-icons/lia";
 import { CiSearch, CiFilter } from "react-icons/ci";
+import { useParams, Link } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function Grades() {
+  const { cid } = useParams()
+  const users = db.users;
+  const grades = db.grades;
+  const enrollments = db.enrollments;
+  const assignments = db.assignments;
+
+  const registered = enrollments.filter((enrollment) => enrollment.course === cid)
+                                .map((enrollment) => enrollment.user);
+  const id_assignments = assignments.filter((assignment) => assignment.course === cid)
+                                        .map((assignment) => assignment._id);
+
   return (
     <div>
       <button className="btn btn-md btn-secondary me-1 text-start float-end">
@@ -62,14 +75,31 @@ export default function Grades() {
       <div id="wd-grades-table">
         <table className="table text-center">
           <thead>
-            <tr className="table-secondary align-middle"><th>Student Name</th><th>A1 SETUP <br />Out of 100</th><th>A2 HTML <br />Out of 100</th>
-              <th>A3 CSS <br /> Out of 100</th><th>A4 BOOTSTRAP <br />Out of 100</th></tr>
+            <tr className="table-secondary align-middle"><th>Student Name</th>
+              {id_assignments.map((id) => 
+                <th>{id}<br />
+                Out of {assignments.find((assignment) => 
+                  assignment._id === id)?.points}</th>
+              )}
+            </tr>
           </thead>
           <tbody>
-            <tr className="table-white"><td>Jane Adams</td><td>100</td><td><input value="99" className="text-center"/></td><td>85</td><td>85</td></tr>
-            <tr className="table-secondary"><td>Christina Allen</td><td>88</td><td>99</td><td>90</td><td>85</td></tr>
-            <tr className="table-white"><td>Samreen Ansari</td><td>90</td><td>78</td><td>85</td><td>90</td></tr>
-            <tr className="table-secondary"><td>Han Bao</td><td>99</td><td>85</td><td>88</td><td>90</td></tr>
+            {registered.map((user_id, index) => {
+              const user = users.find((user) => user._id === user_id);
+              return (
+                <tr key={index} className={index % 2 === 0 ? "table-white" : "table-secondary"}>
+                  <td>{user?.firstName} {user?.lastName}</td>
+                  {id_assignments.map((id) => {
+                    const grade = grades.find(
+                      (grade) =>
+                        grade.student === user_id &&
+                        grade.assignment === id
+                    )?.grade;
+                    return <td key={id}>{grade || "-"}</td>;
+                  })}
+                </tr>
+              );
+            })}
           </tbody>
 
         </table>
