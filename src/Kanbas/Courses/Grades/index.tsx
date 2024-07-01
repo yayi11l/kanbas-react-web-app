@@ -46,20 +46,20 @@ export default function Grades() {
             <label htmlFor="wd-search-students" className="col-form-label me-1 fw-bold">
               Student Names </label>
           </div>
-          <span className="input-group-text"><CiSearch/></span>
-          <div className="row">
+          <div className="input-group mb-3 col-3 w-auto">
+            <span className="input-group-text"><CiSearch/></span>
             <input id="wd-search-students"
-              className="form-control me-1 col-sm-6"
+              className="form-control me-1"
               placeholder="Search Students" />
           </div>
         </div>
         <div className="input-group mb-3 col">
           <label htmlFor="wd-search-students" className="col-form-label me-1 col-12 fw-bold">
             Assignment Names </label>
-          <span className="input-group-text"><CiSearch/></span>
-          <div>
+          <div className="input-group mb-3 col-3 w-auto">
+            <span className="input-group-text"><CiSearch/></span>
             <input id="wd-search-students"
-              className="form-control me-1 col-sm-6"
+              className="form-control me-1"
               placeholder="Search Assignments" />
           </div>
         </div>
