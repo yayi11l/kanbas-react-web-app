@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addAssignment, updateAssignment } from "./reducer"
+import { addAssignment, updateAssignment, setAssignments } from "./reducer"
 import NameDescription from "./NameDescription";
 import Points from "./Points";
 import Group from "./Group";
@@ -8,6 +8,7 @@ import DisplayGrade from "./DisplayGrade";
 import SubmissionType from "./SubmissionType";
 import Assign from "./Assign";
 import { useEffect, useState } from "react";
+import * as client from "./client";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
@@ -36,17 +37,20 @@ export default function AssignmentEditor() {
   };
 
   const dispatch = useDispatch();
+  const createAssignment = async (assignment : any) => {
+    const newAssignment = await client.createAssignments(cid as string, assignment);
+    dispatch(addAssignment(newAssignment))
+  }
+  const saveAssignment = async (assignment : any) => {
+    const status = await client.updateAssignment(assignment);
+    dispatch(updateAssignment(assignment))
+  }
+
   const handleSave = () => {
-    const updatedAssignment = {
-      ...assignment,
-      ...formState,
-      course: cid,
-      _id: formState._id || Date.now().toString()
-    };
     if (!aid) {
-      dispatch(addAssignment(updatedAssignment));
+      createAssignment({course: cid, ...formState});
     } else {
-      dispatch(updateAssignment(updatedAssignment));
+      saveAssignment(formState);
     }
   };
 

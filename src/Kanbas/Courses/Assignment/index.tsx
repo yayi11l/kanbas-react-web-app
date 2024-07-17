@@ -8,13 +8,29 @@ import "./index.css";
 import { useParams, Link } from "react-router-dom";
 import DeleteDialog from "./DeleteDialog";
 import { useDispatch, useSelector } from "react-redux";
-import { addAssignment, deleteAssignment, updateAssignment, editAssignment } from "./reducer"
+import { addAssignment, deleteAssignment, updateAssignment, editAssignment, setAssignments } from "./reducer"
+import * as client from "./client";
+import { useEffect } from "react";
 
 export default function Assignments() {
   const { cid } = useParams();
   // const assignments = db.assignments;
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const dispatch = useDispatch()
+
+  const fetchAssignments = async () => {
+    const assignments = await client.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  }
+
+  useEffect(() => {
+    fetchAssignments();
+  }, [])
+
+  const removeAssignment = async (assignmentId: string) => {
+    await client.deleteAssignment(assignmentId);
+    dispatch(deleteAssignment(assignmentId));
+  }
 
   return (
     <div id="wd-assignments">
@@ -94,7 +110,7 @@ export default function Assignments() {
                               data-bs-toggle="modal" 
                               data-bs-target={`#wd-delete-assignment-dialog-${aid}`} />
                       <LessonControlButtons />
-                      <DeleteDialog aId = {aid} deleteAssignment={ (aId) => dispatch(deleteAssignment(aId)) }/>
+                      <DeleteDialog aId = {aid} deleteAssignment={ (aId) => {removeAssignment(aId)} }/>
                     </div>
                   </div>
                 </li>
