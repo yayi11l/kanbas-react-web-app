@@ -6,6 +6,7 @@ import Assignments from "./Assignment";
 import AssignmentEditor from "./Assignment/Editor";
 import { FaAlignJustify } from "react-icons/fa6";
 import Grades from "./Grades";
+import PeopleTable from "./People/Table";
 
 export default function Courses({ courses }: { courses: any[]; }) {
   const { cid } = useParams();
@@ -27,12 +28,14 @@ export default function Courses({ courses }: { courses: any[]; }) {
         <div className="flex-fill">
           <Routes>
             <Route path="/" element={<Navigate to="Home" />} />
-            <Route path="Home" element={<Home />} />
-            <Route path="Modules" element={<Modules />} />
-            <Route path="Assignments" element={<Assignments />} />
-            <Route path="Assignments/new" element={<AssignmentEditor />} />
-            <Route path="Assignments/edit/:aid" element={<AssignmentEditor />} />
-            <Route path="Grades" element={<Grades />} />
+            <Route path="/Home" element={<Home />} />
+            <Route path="/Modules" element={<Modules />} />
+            <Route path="/Assignments" element={<Assignments />} />
+            <Route path="/Assignments/new" element={<AssignmentEditor />} />
+            <Route path="/Assignments/edit/:aid" element={<AssignmentEditor />} />
+            <Route path="/Grades" element={<Grades />} />
+            <Route path="/People" element={<PeopleTable />} />
+            <Route path="/People/:uid" element={<PeopleTable />} />
           </Routes>
         </div>
       </div>
