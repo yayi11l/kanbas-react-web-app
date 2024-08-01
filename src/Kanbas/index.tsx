@@ -3,7 +3,7 @@ import KanbasNavigation from "./Navigation";
 import { Routes, Route, Navigate } from "react-router";
 import React, { useEffect, useState } from "react";
 import Courses from "./Courses";
-import "./styles.css"
+import "./styles.css";
 import * as client from "./Courses/client";
 import store from "./store";
 import { Provider } from "react-redux";
@@ -28,7 +28,7 @@ export default function Kanbas() {
 
   const addNewCourse = async () => {
     const newCourse = await client.createCourse(course);
-    setCourses([...courses,newCourse ]);
+    setCourses([...courses, newCourse ]);
   };
   
   const deleteCourse = async (courseId: string) => {

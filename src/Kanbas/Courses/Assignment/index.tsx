@@ -65,7 +65,7 @@ export default function Assignments() {
           </div>
           <ul id="wd-assignment-list" className="list-group rounded-0">
             {assignments
-              .filter((assignment : any) => assignment.course === cid)
+              // .filter((assignment : any) => assignment.course === cid)
               .map((assignment : any) => {
                 // Format the date as "Month Day"
                 const options: Intl.DateTimeFormatOptions = {

@@ -13,7 +13,7 @@ import * as client from "./client";
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-  const assignment = assignments.find((assignment : any) => assignment.course === cid && assignment._id === aid)|| {
+  const assignment = assignments.find((assignment : any) => assignment._id === aid)|| {
     _id: '',
     description: '',
     points: 0,
@@ -38,8 +38,9 @@ export default function AssignmentEditor() {
 
   const dispatch = useDispatch();
   const createAssignment = async (assignment : any) => {
+    // console.log(assignment);
     const newAssignment = await client.createAssignments(cid as string, assignment);
-    dispatch(addAssignment(newAssignment))
+    dispatch(addAssignment(newAssignment));
   }
   const saveAssignment = async (assignment : any) => {
     const status = await client.updateAssignment(assignment);

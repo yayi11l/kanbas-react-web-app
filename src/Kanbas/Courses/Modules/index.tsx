@@ -18,6 +18,7 @@ export default function Modules() {
   const fetchModules = async () => {
     const modules = await client.findModulesForCourse(cid as string);
     dispatch(setModules(modules));
+    // console.log(modules);
   };
   useEffect(() => {
     fetchModules();
@@ -25,7 +26,9 @@ export default function Modules() {
 
   const createModule = async (module: any) => {
     const newModule = await client.createModule(cid as string, module);
+    // console.log(newModule);
     dispatch(addModule(newModule));
+    // console.log(modules);
   };
 
   const removeModule = async (moduleId: string) => {
@@ -51,7 +54,7 @@ export default function Modules() {
 
       <ul id="wd-modules" className="list-group rounded-0">
         {modules
-          .filter((module : any) => module.course === cid)
+          // .filter((module : any) => module.course === cid)
           .map((module : any)=> (
             <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
               <div className="wd-title p-3 ps-2 bg-secondary">
